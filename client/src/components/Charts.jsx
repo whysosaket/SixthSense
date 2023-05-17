@@ -1,15 +1,29 @@
 import React, {useState} from 'react'
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import { Chart as ChartJS} from "chart.js/auto";
 import { UserData } from '../Data';
 
 const Charts = () => {
+  const options = {
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
     
     const [userData, setUserData] = useState({
         labels: UserData.map((data) => data.year),
         datasets: [
           {
-            label: "Profit",
+            label: "Investment Value",
             data: UserData.map((data) => data.userGain),
             backgroundColor: [
               "rgba(75,192,192,1)",
@@ -18,8 +32,14 @@ const Charts = () => {
               "#f3ba2f",
               "#2a71d0",
             ],
-            borderColor: "black",
-            borderWidth: 2,
+            fill: true,
+            borderColor: "#2dd4bf",
+            borderWidth: 6,
+            backgroundColor: "#2dd4bf",
+            pointBorderColor: "#f26c6d",
+            pointBorderWidth: 3,
+            pointRadius: 0,
+            pointBackgroundColor: "#fff",
           },
         ],
       });
@@ -27,8 +47,8 @@ const Charts = () => {
   return (
     <>
     <div className='m-3 mx-12'></div>
-    <div className='bg-teal-50 rounded-3xl p-4 text-gray-700 shadow-lg'>
-    <Line data={userData} />
+    <div className='bg-gray-50 opacity-75 rounded-3xl p-4 text-gray-700 shadow-lg'>
+    <Line data={userData} options={options} />
      </div>   
     </>
   )
