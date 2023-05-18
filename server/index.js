@@ -21,6 +21,7 @@ app.use(express.json());
 // Avialable Routes
 // app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/link', require('./routes/link'));
+app.use('/api/trade', require('./routes/trade'));
 
 app.listen(port, ()=>{
     console.log("Server started at port: "+port);

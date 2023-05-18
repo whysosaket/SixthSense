@@ -9,6 +9,7 @@ const transactionSchema = new mongoose.Schema({
   type: { type: String, enum: transactionTypes, required: true },
   amount: { type: Number, required: true },
   price: { type: Number, required: true },
+  closingBalance: { type: Number, required: true },
 });
 
 module.exports = mongoose.model("transaction", transactionSchema);

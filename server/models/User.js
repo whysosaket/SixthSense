@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  balance: {
+  totalShares: {
+    type: Number,
+    default: 0,
+  },
+  walletBalance: {
     type: Number,
     default: 0,
   },
@@ -31,6 +35,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  dayCount: {
+    type: Number,
+    default: 0,
+  }
 });
 
 module.exports = mongoose.model("user", userSchema);
