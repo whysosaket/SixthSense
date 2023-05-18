@@ -21,7 +21,31 @@ const setTransaction = async (userId, type, amount, price, closingBalance) => {
         closingBalance: closingBalance
     });
     await transaction.save();
+    if(type == "buy"){
+        return -amount*price;
+    }
+    else{
+        return amount*price;
+    }
+}
+
+const buyShare = async (userId, amount) => {
+    let user = await User.findById(userId);
+    let price = data[user.dayCount].Price;
+    user.totalShares += amount;
+    user.walletBalance -= amount*price;
+    user.totalAssets = amount*price + user.walletBalance;
+    return user.save();
+}
+
+const sellShare = async (userId, amount) => {
+    let user = await User.findById(userId);
+    let price = data[user.dayCount].Price;
+    user.totalShares -= amount;
+    user.walletBalance += amount*price;
+    user.totalAssets = amount*price + user.walletBalance;
+    return user.save();
 }
 
 
-module.exports = { getTransactions, getTransaction, setTransaction };
+module.exports = { getTransactions, getTransaction, setTransaction, buyShare, sellShare };

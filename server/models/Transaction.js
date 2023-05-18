@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // define enum having values "deposit" and "withdraw"
-const transactionTypes = ["deposit", "withdraw"];
+const transactionTypes = ["buy", "sell"];
 
 const transactionSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
