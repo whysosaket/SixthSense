@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema({
   dayCount: {
     type: Number,
     default: 0,
-  }
+  },
+  principle: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("user", userSchema);

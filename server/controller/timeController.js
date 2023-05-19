@@ -15,6 +15,10 @@ const getDayCount = async (userId) => {
 const updateDayCount = async (userId) => {
     try{
     let user = await User.findById(userId);
+    let dayCount = user.dayCount;
+    if(dayCount >= data.length - 1){
+        return -1;
+    }
     user.dayCount++;
     await user.save();
     return user.dayCount;

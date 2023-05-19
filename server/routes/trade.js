@@ -7,10 +7,11 @@ const Transaction = require("../models/Transaction");
 
 const { getLevel, getWalletBalance, updateWalletBalance, updateTotalAssets, getBalanceInShares } = require("../controller/dataController");
 const { getDayCount, updateDayCount, getDate } = require("../controller/timeController");
-const { getTransactions, getTransaction, setTransaction, buyShare, sellShare } = require("../controller/tradeController");
+const { getTransactions, getTransaction, setTransaction, buyShare, sellShare, setModel } = require("../controller/tradeController");
 const {makeTrade} = require("../controller/mainController");
+const {resetUser} = require("../controller/adminController");
 
-const userID = "Testid";
+const userID = "64675dd96bb5b00a806f75d5";
 
 router.route("/").get( async (req, res) => {
   makeTrade();
@@ -18,6 +19,12 @@ router.route("/").get( async (req, res) => {
 })
 .post((req, res) => {
 
+});
+
+router.route("/changeModel").post(async (req, res) => {
+    let model = req.body.model;
+    setModel(model);
+    res.send("Model Changed!");
 });
 
 router.route("/transactions").get(async (req, res) => {
@@ -33,6 +40,11 @@ router.route("/transactions/:id").get(async (req, res) => {
 router.route("/updateday").get(async (req, res) => {
     updateDayCount(userID);
     res.send("updated");
+});
+
+router.route("/reset").get(async (req, res) => {
+    await resetUser(userID);
+    res.send("All Data has been reset!");
 });
 
 

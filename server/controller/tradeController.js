@@ -51,7 +51,8 @@ const buyShare = async (userId, amount) => {
     let price = data[user.dayCount].Price;
     user.totalShares += amount;
     user.walletBalance -= amount * price;
-    user.totalAssets = amount * price + user.walletBalance;
+    user.totalAssets = user.totalShares * price + user.walletBalance;
+    console.log("buying share");
     return user.save();
   } catch (e) {
     console.log(e);
@@ -64,19 +65,29 @@ const sellShare = async (userId, amount) => {
     let price = data[user.dayCount].Price;
     user.totalShares -= amount;
     user.walletBalance += amount * price;
-    user.totalAssets = amount * price + user.walletBalance;
+    user.totalAssets = user.totalShares * price + user.walletBalance;
+    console.log("selling share");
     return user.save();
   } catch (e) {
     console.log(e);
   }
 };
 
-const getQuantity = async (userId) => {
+const getBuyQuantity = async (userId) => {
   try {
     let user = await User.findById(userId);
-    let price = data[user.dayCount].Price;
-    let quantity = Math.floor(user.walletBalance / price);
+    let price = parseFloat(data[user.dayCount].Price);
+    let quantity = parseInt(parseFloat(user.walletBalance) / price);
     return quantity;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getSellQuantity = async (userId) => {
+  try {
+     let user = await User.findById(userId);
+      return user.totalShares;
   } catch (e) {
     console.log(e);
   }
@@ -119,12 +130,35 @@ const setModel = async (model) => {
   }
 }
 
+const addMoney = async (userId) => {
+  try{
+    let user = await User.findById(userId);
+    if (user.dayCount == 0) {
+      return;
+    }
+    // if the month is new then add 10000 to wallet where date is a string in format dd/mm/yyyy
+    let prevDate = data[user.dayCount - 1].Date.split("-")[1];
+    let currDate = data[user.dayCount].Date.split("-")[1];
+
+    if (prevDate != currDate) {
+      user.walletBalance += 10000;
+      user.totalAssets += 10000;
+      user.principle += 10000;
+      await user.save();
+    }
+  }catch(e){
+    console.log(e);
+  }
+};
+
 module.exports = {
   getTransactions,
   getTransaction,
   setTransaction,
   buyShare,
   sellShare,
-  getQuantity,
-  setModel
+  getBuyQuantity,
+  getSellQuantity,
+  setModel,
+  addMoney,
 };
