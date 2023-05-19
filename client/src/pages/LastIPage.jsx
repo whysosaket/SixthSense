@@ -1,10 +1,8 @@
-import React, {useContext, useEffect} from 'react'
-import {GrFormNext} from 'react-icons/gr'
+import React from 'react'
+import {useContext, useEffect} from 'react'
 import GlobalContext from "../context/globalContext";
-import {Link} from 'react-router-dom';
 
-const LastInvestments = () => {
-
+const LastIPage = () => {
     const context = useContext(GlobalContext);
     const {transactions, getTransactions} = context;
 
@@ -14,15 +12,16 @@ const LastInvestments = () => {
 
   return (
     <>
+    <div className=''>
     <div className="mx-3 my-6">
         <div className="bg-white rounded-3xl p-4 text-gray-700 shadow-lg">
             <div className='flex justify-between mb-2'>
                 <p className='font-bold'>Last investments</p>
-                <Link to="/lastinvestments" className='text-lg text-gray-200 my-auto hover:animate-bounce'><GrFormNext /></Link>
+                {/* <Link to="/lastinvestments" className='text-lg text-gray-200 my-auto hover:animate-bounce'><GrFormNext /></Link> */}
             </div>
 
             <div className=''>
-                {transactions.slice(-3).map((transaction, index) => {
+                {transactions.map((transaction, index) => {
                     return (
                         <div key={index} className='flex justify-between my-1'>
                             <p className='text-gray-400 font-semibold text-sm my-auto'>{transaction.transactionOn}</p>
@@ -39,8 +38,9 @@ const LastInvestments = () => {
             </div>
         </div>
     </div>
+    </div>
     </>
   )
 }
 
-export default LastInvestments
+export default LastIPage

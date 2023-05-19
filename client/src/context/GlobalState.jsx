@@ -38,8 +38,24 @@ const GlobalState = (props) => {
         }
     }
 
+    const trade = async () => {
+        console.log("trading");
+        try{
+            let response = await fetch("http://192.168.74:9000/api/trade", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            response = await response.json();
+            console.log(response);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
   return (
-    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions }}>
+    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions, trade }}>
       {props.children}
     </GlobalContext.Provider>
   );

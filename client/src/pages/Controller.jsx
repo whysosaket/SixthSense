@@ -1,10 +1,24 @@
 import React, {useState} from 'react'
+import { useContext } from 'react';
+import GlobalContext from '../context/globalContext';
+
 
 const Controller = () => {
 
   const [isAuto, setIsAuto] = useState(false);
+  const context = useContext(GlobalContext);
+    const {trade} = context;
+
+
 
   const handleIsAuto = () => {
+    if(isAuto){
+        clearInterval();
+    }else{
+        setInterval(() => {
+            trade();
+        }, 2000);
+    }
     setIsAuto(!isAuto);
   }
 

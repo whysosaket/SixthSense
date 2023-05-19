@@ -28,15 +28,29 @@ const makeTrade = async () => {
     // if level is 1 then buy
     if(level == 1){
         let quantity = await getBuyQuantity(userID);
+        if(quantity == 0) {
+            updateDayCount(userID);
+            return;
+        }
         let n = await buyShare(userID, quantity);
-        if(n == false) return;
+        if(n == false) {
+            updateDayCount(userID);
+            return;
+        }
         await setTransaction(userID, "buy", quantity, data[dayCount].Price, walletBalance, data[dayCount].Date);
     }
     // if level is 0 then sell
     else if(level == 0){
         let quantity = await getSellQuantity(userID);
+        if(quantity == 0) {
+            updateDayCount(userID);
+            return;
+        }
         let n = await sellShare(userID, quantity);
-        if(n == false) return;
+        if(n == false) {
+            updateDayCount(userID);
+            return;
+        }
         await setTransaction(userID, "sell", quantity, data[dayCount].Price, walletBalance, data[dayCount].Date);
     }
     updateDayCount(userID);
