@@ -22,6 +22,7 @@ app.use(express.json());
 // app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/link', require('./routes/link'));
 app.use('/api/trade', require('./routes/trade'));
+app.use('/api/adduser', require('./routes/adduser'));
 
 app.listen(port, ()=>{
     console.log("Server started at port: "+port);

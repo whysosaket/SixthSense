@@ -1,38 +1,68 @@
 const User = require("../models/User");
 const data = require("../data.js");
 
-const getLevel = async (values) =>{
-    let level = await fetch('http://127.0.0.1:9090/predict', {
-        method: 'POST',
-        body: JSON.stringify(values),
-        headers: {
-            'Content-Type': 'application/json'
-        },
+const getLevel = async (values) => {
+  try {
+    let level = await fetch("http://127.0.0.1:9090/predict", {
+      method: "POST",
+      body: JSON.stringify({data: values}),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     level = await level.json();
     return level;
-}
+  } catch (e) {
+    console.log(e);
+    return -1;
+  }
+};
 
 const getWalletBalance = async (userId) => {
-    let user = await User.findById(userId);
-    return user.walletBalance;
-}
+  try{
+  let user = await User.findById(userId);
+  return user.walletBalance;
+  }catch(e){
+    console.log(e);
+    return 0;
+  }
+};
 
 const updateWalletBalance = async (userId, amount) => {
-    let user = await User.findById(userId);
-    user.walletBalance += amount;
-    await user.save();
-}
+  try{
+  let user = await User.findById(userId);
+  user.walletBalance += amount;
+  await user.save();
+  }catch(e){
+    console.log(e);
+    return 0;
+  }
+};
 
 const updateTotalAssets = async (userId, amount) => {
-    let user = await User.findById(userId);
-    user.totalAssets += amount;
-    await user.save();
-}
+  try{
+  let user = await User.findById(userId);
+  user.totalAssets += amount;
+  await user.save();
+  }catch(e){
+    console.log(e);
+  }
+};
 
 const getBalanceInShares = async (userId) => {
-    let user = await User.findById(userId);
-    return user.balanceInShares*data[user.dayCount].Price;
-}
+  try{
+  let user = await User.findById(userId);
+  return user.balanceInShares * data[user.dayCount].Price;
+  }catch(e){
+    console.log(e);
+    return;
+  }
+};
 
-module.exports = { getWalletBalance, updateWalletBalance, updateTotalAssets, getBalanceInShares, getLevel};
+module.exports = {
+  getWalletBalance,
+  updateWalletBalance,
+  updateTotalAssets,
+  getBalanceInShares,
+  getLevel,
+};

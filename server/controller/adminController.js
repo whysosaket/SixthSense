@@ -7,6 +7,7 @@ const createUser = async (name, email, password) => {
         password: password
     });
     await user.save();
+    return user._id;
 }
 
 module.exports = { createUser };

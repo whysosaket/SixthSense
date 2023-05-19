@@ -15,7 +15,9 @@ def change():
     fname = request.json
     fname = fname['model']
     filename = fname
-    return "MODEL CHANGED TO: {} FROM: {}".format(fname, temp)
+    stringN = "MODEL CHANGED TO: {} FROM: {}".format(fname, temp)
+    response = jsonify({'model': stringN})
+    return response
 
 
 @app.route('/predict', methods=['POST'])
