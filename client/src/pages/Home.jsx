@@ -11,13 +11,19 @@ import GlobalContext from "../context/globalContext";
 const Home = () => {
 
   const context = useContext(GlobalContext);
-  const {getData, getTransactions} = context;
+  const {getData, getTransactions, trade} = context;
+
+  const per = async () => {
+    await getData();
+    await getTransactions();
+    await trade();
+  }
 
   useEffect(() => { 
     setInterval(() => {
-    getData();
-    getTransactions();
-    }, 200);
+      getData();
+      getTransactions();
+    }, 2000);
 
     return () => {
       clearInterval();

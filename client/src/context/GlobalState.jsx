@@ -41,7 +41,7 @@ const GlobalState = (props) => {
     const trade = async () => {
         console.log("trading");
         try{
-            let response = await fetch("http://192.168.74:9000/api/trade", {
+            let response = await fetch("http://192.168.29.74:9000/api/trade", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
