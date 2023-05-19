@@ -1,7 +1,11 @@
-import React from "react";
 import {BiUpArrow} from 'react-icons/bi'
+import {Link} from 'react-router-dom'
+import { useContext } from "react";
+import GlobalContext from "../context/globalContext";
 
 const Navbar = () => {
+  const context = useContext(GlobalContext);
+  const { data } = context;
   return (
     <>
       <header className="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
@@ -16,26 +20,26 @@ const Navbar = () => {
           fill="#22C55E"
         />
       </svg>
-      <p className="inline-block text-2xl font-bold text-green-500">stalkstocks</p>
+      <Link to="/" className="inline-block text-2xl font-bold text-green-500 my-3 md:my-0">stalkstocks</Link>
   </h1>
   {/* navigation */}
-  <nav className="nav font-semibold text-lg">
+  <nav className="nav font-semibold text-lg hidden md:block">
     <ul className="flex items-center">
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
-        <a href="">Dashboard</a>
+        <Link to="/">Dashboard</Link>
       </li>
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <a href="">Profile</a>
+        <Link to="/">Profile</Link>
       </li>
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <a href="">Settings</a>
+        <Link to="/controller">Settings</Link>
       </li>
     </ul>
   </nav>
   {/* buttons -*/}
-  <div className="w-3/12 flex justify-end">
+  <div className="w-6/12  md:w-3/12 flex justify-end">
 
-      <p className="text-green-500 font-bold my-auto">$143,122</p>
+      <p className="text-green-500 font-bold my-auto">₹ {data.totalAssets.toFixed(2)}</p>
       <p className="my-auto mx-1 hover:animate-bounce"><BiUpArrow color="green" /></p>
   </div>
 </header>

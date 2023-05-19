@@ -19,6 +19,7 @@ const resetUser = async (userId) => {
     user.totalAssets = 0;
     user.dayCount = 0;
     user.principle = 10000;
+    user.tradedToday = false;
     await user.save();
 
     // delete all transactions

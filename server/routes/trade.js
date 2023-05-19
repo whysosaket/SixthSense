@@ -21,6 +21,20 @@ router.route("/").get( async (req, res) => {
 
 });
 
+router.route("/getdata").get(async (req, res) => {
+    let user = await User.findById(userID);
+    let dayCount = user.dayCount;
+    let date = data[dayCount].Date;
+    let pricePerShare= data[dayCount].Price;
+    let walletBalance = user.walletBalance
+    let totalAssets = user.totalAssets
+    let totalShares = user.totalShares;
+    let principle = user.principle;
+
+    let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle };
+    return res.json({data: sendData});
+});
+
 router.route("/changeModel").post(async (req, res) => {
     let model = req.body.model;
     setModel(model);
@@ -29,7 +43,7 @@ router.route("/changeModel").post(async (req, res) => {
 
 router.route("/transactions").get(async (req, res) => {
     let transactions = await getTransactions(userID);
-    res.send(transactions);
+    res.json({transactions});
 });
 
 router.route("/transactions/:id").get(async (req, res) => {

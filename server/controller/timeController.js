@@ -19,6 +19,7 @@ const updateDayCount = async (userId) => {
     if(dayCount >= data.length - 1){
         return -1;
     }
+    user.tradedToday = false;
     user.dayCount++;
     await user.save();
     return user.dayCount;

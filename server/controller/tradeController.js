@@ -25,7 +25,7 @@ const getTransaction = async (userId, transactionId) => {
   }
 };
 
-const setTransaction = async (userId, type, amount, price, closingBalance) => {
+const setTransaction = async (userId, type, amount, price, closingBalance, transactionOn) => {
   try {
     let transaction = new Transaction({
       user: userId,
@@ -33,6 +33,7 @@ const setTransaction = async (userId, type, amount, price, closingBalance) => {
       amount: amount,
       price: price,
       closingBalance: closingBalance,
+      transactionOn: transactionOn,
     });
     await transaction.save();
     if (type == "buy") {
@@ -48,12 +49,15 @@ const setTransaction = async (userId, type, amount, price, closingBalance) => {
 const buyShare = async (userId, amount) => {
   try {
     let user = await User.findById(userId);
+    if(user.tradedToday) return false;
     let price = data[user.dayCount].Price;
     user.totalShares += amount;
     user.walletBalance -= amount * price;
     user.totalAssets = user.totalShares * price + user.walletBalance;
+    user.tradedToday = true;
     console.log("buying share");
-    return user.save();
+    await user.save();
+    return true;
   } catch (e) {
     console.log(e);
   }
@@ -62,12 +66,15 @@ const buyShare = async (userId, amount) => {
 const sellShare = async (userId, amount) => {
   try {
     let user = await User.findById(userId);
+    if(user.tradedToday) return false;
     let price = data[user.dayCount].Price;
     user.totalShares -= amount;
     user.walletBalance += amount * price;
     user.totalAssets = user.totalShares * price + user.walletBalance;
+    user.tradedToday = true;
     console.log("selling share");
-    return user.save();
+    await user.save();
+    return true;
   } catch (e) {
     console.log(e);
   }

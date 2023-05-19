@@ -4,7 +4,7 @@ const Toggle = () => {
   return (
     <div className="flex font-semibold text-white">
       <label
-        for="Toggle3"
+        htmlFor="Toggle3"
         className="inline-flex mx-auto items-center p-2 rounded-3xl cursor-pointer"
       >
         <input id="Toggle3" type="checkbox" className="hidden peer" />

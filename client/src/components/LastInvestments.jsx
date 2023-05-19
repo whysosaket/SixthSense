@@ -1,7 +1,16 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import {GrFormNext} from 'react-icons/gr'
+import GlobalContext from "../context/globalContext";
 
 const LastInvestments = () => {
+
+    const context = useContext(GlobalContext);
+    const {transactions, getTransactions} = context;
+
+    useEffect(() => {
+        getTransactions();
+    }, []);
+
   return (
     <>
     <div className="mx-3 my-6">
@@ -12,21 +21,20 @@ const LastInvestments = () => {
             </div>
 
             <div className=''>
-            <div className='flex justify-between my-1'>
+                {transactions.slice(-3).map((transaction, index) => {
+                    return (
+                        <div key={index} className='flex justify-between my-1'>
+                            <p className='text-gray-400 font-semibold text-sm my-auto'>{transaction.transactionOn}</p>
+                            <p className={`text-green-400 ${transaction.type=="sell"&&'text-red-400'}`}>{transaction.amount}</p>
+                            <p className={`text-green-400 ${transaction.type=="sell"&&'text-red-400'}`}>₹ {transaction.price.toFixed(2)}</p>
+                        </div>
+                    )
+                })}
+            {/* <div className='flex justify-between my-1'>
                 <p className='text-gray-400 font-semibold text-sm my-auto'>22/01/2015</p>
                 <p className='text-green-400'>+$412</p>
                 <p className='text-green-400'>$1412</p>
-            </div>
-            <div className='flex justify-between my-1'>
-                <p className='text-gray-400 font-semibold text-sm my-auto'>23/01/2015</p>
-                <p className='text-green-400'>+$12</p>
-                <p className='text-green-400'>$1424</p>
-            </div>
-            <div className='flex justify-between my-1'>
-                <p className='text-gray-400 font-semibold text-sm my-auto'>24/01/2015</p>
-                <p className='text-red-400'>-$200</p>
-                <p className='text-green-400'>$1224</p>
-            </div>
+            </div> */}
             </div>
         </div>
     </div>

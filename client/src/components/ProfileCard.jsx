@@ -1,15 +1,20 @@
-import React from 'react'
+import { useContext } from 'react';
+import GlobalContext from '../context/globalContext';
 
 const ProfileCard = () => {
+
+    const context = useContext(GlobalContext);
+    const { data } = context;
+
   return (
     <>
         <div className="bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 rounded-3xl p-4 shadow-2xl text-white m-3">
             <div className='flex justify-between my-1'>
                 <p className="text-md font-semibold text-gray-200">Current Balance</p>
-                <p className="text-md font-semibold">09/23</p>
+                <p className="text-md font-semibold">{data.date}</p>
             </div>
             <div className='mb-12'>
-                <h1 className="text-3xl font-extrabold">$5,332.18</h1>
+                <h1 className="text-3xl font-extrabold">₹ {data.walletBalance.toFixed(2)}</h1>
             </div>
             <div className='flex justify-between my-1'>
                 <p className="text-lg text-gray-200">**** 5678</p>

@@ -10,6 +10,7 @@ const transactionSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   price: { type: Number, required: true },
   closingBalance: { type: Number, required: true },
+  transactionOn: { type: String, required: true },
 });
 
 module.exports = mongoose.model("transaction", transactionSchema);
