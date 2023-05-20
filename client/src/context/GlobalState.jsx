@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import GlobalContext from "./globalContext";
 
+let url = "http://192.168.29.73:9000";
+
 const GlobalState = (props) => {
 
     const [data, setData] = useState({walletBalance: 0, date: "09/01/2021", totalAssets: 0, totalShares: 0, pricePerShare: 0, principle: 0});
@@ -9,7 +11,7 @@ const GlobalState = (props) => {
 
     const getData = async () => {
         try{
-            let response = await fetch("http://192.168.29.73:9000/api/trade/getdata", {
+            let response = await fetch(`${url}/api/trade/getdata`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -25,7 +27,7 @@ const GlobalState = (props) => {
 
     const getTransactions = async () => {
         try{
-            let response = await fetch("http://192.168.29.73:9000/api/trade/transactions", {
+            let response = await fetch(`${url}/api/trade/transactions`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,7 +43,7 @@ const GlobalState = (props) => {
     const trade = async () => {
         console.log("trading");
         try{
-            let response = await fetch("http://192.168.29.73:9000/api/trade", {
+            let response = await fetch(`${url}/api/trade`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,8 +56,18 @@ const GlobalState = (props) => {
         }
     }
 
+    const reset = async () => {
+        try{
+            let response = await fetch(`${url}/api/trade/reset`);
+            response = await response.json();
+            console.log(response);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
   return (
-    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions, trade }}>
+    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions, trade, reset }}>
       {props.children}
     </GlobalContext.Provider>
   );

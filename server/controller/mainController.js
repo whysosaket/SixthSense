@@ -11,7 +11,7 @@ const makeTrade = async () => {
     await addMoney(userID);
     
     let dayCount = await getDayCount(userID);
-    if(dayCount >= data.length - 1){
+    if(dayCount > data.length - 1){
         console.log("All Days are over!");
         return;
     }
@@ -22,7 +22,6 @@ const makeTrade = async () => {
 
     let level = await getLevel(senddata);
     console.log(level, dayCount, sendingData.Price);
-    let walletBalance = await getWalletBalance(userID);
 
 
     // if level is 1 then buy
@@ -37,7 +36,6 @@ const makeTrade = async () => {
             updateDayCount(userID);
             return;
         }
-        await setTransaction(userID, "buy", quantity, data[dayCount].Price, walletBalance, data[dayCount].Date);
     }
     // if level is 0 then sell
     else if(level == 0){
@@ -51,7 +49,6 @@ const makeTrade = async () => {
             updateDayCount(userID);
             return;
         }
-        await setTransaction(userID, "sell", quantity, data[dayCount].Price, walletBalance, data[dayCount].Date);
     }
     updateDayCount(userID);
 

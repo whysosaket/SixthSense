@@ -57,6 +57,7 @@ const buyShare = async (userId, amount) => {
     user.tradedToday = true;
     console.log("buying share");
     await user.save();
+    await setTransaction(userId, "buy", amount, data[user.dayCount].Price, user.walletBalance, data[user.dayCount].Date);
     return true;
   } catch (e) {
     console.log(e);
@@ -74,6 +75,7 @@ const sellShare = async (userId, amount) => {
     user.tradedToday = true;
     console.log("selling share");
     await user.save();
+    await setTransaction(userId, "sell", amount, data[user.dayCount].Price, user.walletBalance, data[user.dayCount].Date);
     return true;
   } catch (e) {
     console.log(e);

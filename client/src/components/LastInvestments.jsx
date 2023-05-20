@@ -3,6 +3,7 @@ import {GrFormNext} from 'react-icons/gr'
 import GlobalContext from "../context/globalContext";
 import {Link} from 'react-router-dom';
 
+
 const LastInvestments = () => {
 
     const context = useContext(GlobalContext);
@@ -16,10 +17,10 @@ const LastInvestments = () => {
     <>
     <div className="mx-3 my-6">
         <div className="bg-white rounded-3xl p-4 text-gray-700 shadow-lg">
-            <div className='flex justify-between mb-2'>
+            <Link to="/lastinvestments"  className='flex justify-between mb-2'>
                 <p className='font-bold'>Last investments</p>
-                <Link to="/lastinvestments" className='text-lg text-gray-200 my-auto hover:animate-bounce'><GrFormNext /></Link>
-            </div>
+                <p className='text-lg text-gray-200 my-auto hover:animate-pulse'><GrFormNext /></p>
+            </Link>
 
             <div className=''>
                 {transactions.slice(-3).map((transaction, index) => {

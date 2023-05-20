@@ -16,7 +16,7 @@ const resetUser = async (userId) => {
     let user = await User.findById(userId);
     user.totalShares = 0;
     user.walletBalance = 10000;
-    user.totalAssets = 0;
+    user.totalAssets = 10000;
     user.dayCount = 0;
     user.principle = 10000;
     user.tradedToday = false;
@@ -24,6 +24,7 @@ const resetUser = async (userId) => {
 
     // delete all transactions
     await Transaction.deleteMany({user: userId});
+    console.log("reset done");
     }catch(e){
         console.log(e);
     }

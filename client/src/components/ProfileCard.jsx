@@ -1,11 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import GlobalContext from '../context/globalContext';
 import { motion } from "framer-motion"
+import AnimatedNumber from "animated-number-react";
+
+let duration = 700;
+let formatValue = value => `₹ ${Number(value).toFixed(2)}`;
 
 const ProfileCard = () => {
 
     const context = useContext(GlobalContext);
     const { data } = context;
+
+
 
   return (
     <>
@@ -16,7 +22,14 @@ const ProfileCard = () => {
                 <p className="text-md font-semibold">{data.date}</p>
             </div>
             <div className='mb-12'>
-                <h1 className="text-3xl font-extrabold">₹ {data.walletBalance.toFixed(2)}</h1>
+           
+                <h1 className="text-3xl font-extrabold"> 
+                <AnimatedNumber
+            value={data.walletBalance.toFixed(2)}
+            formatValue={formatValue}
+            duration={duration}
+            />
+                </h1>
             </div>
             <div className='flex justify-between my-1'>
                 <p className="text-lg text-gray-200">**** 5678</p>

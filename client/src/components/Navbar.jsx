@@ -2,6 +2,10 @@ import {BiUpArrow} from 'react-icons/bi'
 import {Link} from 'react-router-dom'
 import { useContext } from "react";
 import GlobalContext from "../context/globalContext";
+import AnimatedNumber from "animated-number-react";
+
+let duration = 300;
+let formatValue = value => `₹ ${Number(value).toFixed(2)}`;
 
 const Navbar = () => {
   const context = useContext(GlobalContext);
@@ -39,8 +43,14 @@ const Navbar = () => {
   {/* buttons -*/}
   <div className="w-6/12  md:w-3/12 flex justify-end">
 
-      <p className="text-green-500 font-bold my-auto">₹ {data.totalAssets.toFixed(2)}</p>
-      <p className="my-auto mx-1 hover:animate-bounce"><BiUpArrow color="green" /></p>
+      <p className={`${data.totalAssets>=data.principle?'text-green-500':'text-red-500'} font-bold my-auto`}>
+      <AnimatedNumber
+            value={data.totalAssets.toFixed(2)}
+            formatValue={formatValue}
+            duration={duration}
+            />
+      </p>
+      <p className="my-auto mx-1 motion-safe:animate-bounce font-extrabold"><BiUpArrow color="#84cc16" size='18px' /></p>
   </div>
 </header>
 
