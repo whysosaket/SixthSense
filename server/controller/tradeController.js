@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Transaction = require("../models/Transaction");
+const Graph = require("../models/GraphModel");
 const data = require("../data.js");
 
 const getTransactions = async (userId) => {
@@ -58,6 +59,12 @@ const buyShare = async (userId, amount) => {
     console.log("buying share");
     await user.save();
     await setTransaction(userId, "buy", amount, data[user.dayCount].Price, user.walletBalance, data[user.dayCount].Date);
+    let graph = new Graph({
+      date: data[user.dayCount].Date,
+      price: data[user.dayCount].Price,
+      type: "buy"
+  });
+  await graph.save();
     return true;
   } catch (e) {
     console.log(e);
@@ -76,6 +83,12 @@ const sellShare = async (userId, amount) => {
     console.log("selling share");
     await user.save();
     await setTransaction(userId, "sell", amount, data[user.dayCount].Price, user.walletBalance, data[user.dayCount].Date);
+    let graph = new Graph({
+      date: data[user.dayCount].Date,
+      price: data[user.dayCount].Price,
+      type: "sell"
+  });
+  await graph.save();
     return true;
   } catch (e) {
     console.log(e);

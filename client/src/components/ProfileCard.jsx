@@ -7,11 +7,9 @@ let duration = 700;
 let formatValue = value => `₹ ${Number(value).toFixed(2)}`;
 
 const ProfileCard = () => {
-
+    
     const context = useContext(GlobalContext);
     const { data } = context;
-
-
 
   return (
     <>

@@ -4,6 +4,7 @@ const router = expess.Router();
 const data = require("../data.js");
 const User = require("../models/User");
 const Transaction = require("../models/Transaction");
+const Graph = require("../models/GraphModel");
 
 const { getLevel, getWalletBalance, updateWalletBalance, updateTotalAssets, getBalanceInShares } = require("../controller/dataController");
 const { getDayCount, updateDayCount, getDate } = require("../controller/timeController");
@@ -33,6 +34,11 @@ router.route("/getdata").get(async (req, res) => {
 
     let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle };
     return res.json({data: sendData});
+});
+
+router.route("/getgraph").get(async (req, res) => {
+    let graph = await Graph.find({});
+    res.json({graph});
 });
 
 router.route("/changeModel").post(async (req, res) => {

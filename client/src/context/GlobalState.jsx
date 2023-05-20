@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GlobalContext from "./globalContext";
 
-let url = "http://192.168.29.73:9000";
+let url = "http://192.168.29.74:9000";
 
 const GlobalState = (props) => {
 
     const [data, setData] = useState({walletBalance: 0, date: "09/01/2021", totalAssets: 0, totalShares: 0, pricePerShare: 0, principle: 0});
     const [transactions, setTransactions] = useState([{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"},{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"} ]);
+    const [graph, setGraph] = useState([]);
 
+    useEffect (()=>{
+        getGraph();
+
+    },[])
 
     const getData = async () => {
         try{
@@ -18,7 +23,6 @@ const GlobalState = (props) => {
                 },
             });
             response = await response.json();
-            console.log(response);
             setData(response.data);
         }catch(e){
             console.log(e);
@@ -40,8 +44,22 @@ const GlobalState = (props) => {
         }
     }
 
+    const getGraph = async () => {
+        try{
+            let response = await fetch(`${url}/api/trade/getgraph`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            response = await response.json();
+            setGraph(response.graph);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     const trade = async () => {
-        console.log("trading");
         try{
             let response = await fetch(`${url}/api/trade`, {
                 method: "GET",
@@ -67,7 +85,7 @@ const GlobalState = (props) => {
     }
 
   return (
-    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions, trade, reset }}>
+    <GlobalContext.Provider value={{ data, transactions, getData, getTransactions, trade, reset, getGraph, graph }}>
       {props.children}
     </GlobalContext.Provider>
   );

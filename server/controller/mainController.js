@@ -2,6 +2,7 @@ const { getLevel, getWalletBalance, updateWalletBalance, updateTotalAssets, getB
 const { getDayCount, updateDayCount, getDate } = require("./timeController");
 const { getTransactions, getTransaction, setTransaction, buyShare, sellShare, getBuyQuantity, getSellQuantity, setModel, addMoney } = require("./tradeController");
 const data = require("../data.js");
+const Graph = require("../models/GraphModel")
 
 const userID = "64675dd96bb5b00a806f75d5";
 
@@ -29,11 +30,22 @@ const makeTrade = async () => {
         let quantity = await getBuyQuantity(userID);
         if(quantity == 0) {
             updateDayCount(userID);
+            // create graph
+            let graph = new Graph({
+                date: data[dayCount].Date,
+                price: sendingData.Price,
+            });
+            await graph.save();
             return;
         }
         let n = await buyShare(userID, quantity);
         if(n == false) {
             updateDayCount(userID);
+            let graph = new Graph({
+                date: data[dayCount].Date,
+                price: sendingData.Price,
+            });
+            await graph.save();
             return;
         }
     }
@@ -42,11 +54,21 @@ const makeTrade = async () => {
         let quantity = await getSellQuantity(userID);
         if(quantity == 0) {
             updateDayCount(userID);
+            let graph = new Graph({
+                date: data[dayCount].Date,
+                price: sendingData.Price,
+            });
+            await graph.save();
             return;
         }
         let n = await sellShare(userID, quantity);
         if(n == false) {
             updateDayCount(userID);
+            let graph = new Graph({
+                date: data[dayCount].Date,
+                price: sendingData.Price,
+            });
+            await graph.save();
             return;
         }
     }

@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Transaction = require('../models/Transaction');
+const Graph = require('../models/GraphModel');
 
 const createUser = async (name, email, password) => {
     let user = new User({
@@ -24,6 +25,7 @@ const resetUser = async (userId) => {
 
     // delete all transactions
     await Transaction.deleteMany({user: userId});
+    await Graph.deleteMany({});
     console.log("reset done");
     }catch(e){
         console.log(e);

@@ -10,7 +10,7 @@ let speed = 1000;
 const Controller = () => {
   const [isAuto, setIsAuto] = useState(false);
   const context = useContext(GlobalContext);
-  const { trade, data, getData, reset } = context;
+  const { trade, data, getData, reset, getGraph } = context;
   const speedRef = useRef(null);
 
   const notify = (data) => {
@@ -33,6 +33,7 @@ const Controller = () => {
 
       intervalId = setInterval(() => {
         trade();
+        getGraph();
       }, speed);
 
 
