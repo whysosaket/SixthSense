@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import GlobalContext from '../context/globalContext';
+import { motion } from "framer-motion"
 
 const ProfileCard = () => {
 
@@ -8,6 +9,7 @@ const ProfileCard = () => {
 
   return (
     <>
+        <>
         <div className="bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 rounded-3xl p-4 shadow-2xl text-white m-3">
             <div className='flex justify-between my-1'>
                 <p className="text-md font-semibold text-gray-200">Current Balance</p>
@@ -26,6 +28,7 @@ const ProfileCard = () => {
                 </div>
             </div>
         </div>
+        </>
 
     </>
   )

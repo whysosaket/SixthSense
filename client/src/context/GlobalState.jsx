@@ -4,12 +4,12 @@ import GlobalContext from "./globalContext";
 const GlobalState = (props) => {
 
     const [data, setData] = useState({walletBalance: 0, date: "09/01/2021", totalAssets: 0, totalShares: 0, pricePerShare: 0, principle: 0});
-    const [transactions, setTransactions] = useState([]);
+    const [transactions, setTransactions] = useState([{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"},{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"} ]);
 
 
     const getData = async () => {
         try{
-            let response = await fetch("http://192.168.29.74:9000/api/trade/getdata", {
+            let response = await fetch("http://192.168.29.73:9000/api/trade/getdata", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const GlobalState = (props) => {
 
     const getTransactions = async () => {
         try{
-            let response = await fetch("http://192.168.29.74:9000/api/trade/transactions", {
+            let response = await fetch("http://192.168.29.73:9000/api/trade/transactions", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const GlobalState = (props) => {
     const trade = async () => {
         console.log("trading");
         try{
-            let response = await fetch("http://192.168.29.74:9000/api/trade", {
+            let response = await fetch("http://192.168.29.73:9000/api/trade", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

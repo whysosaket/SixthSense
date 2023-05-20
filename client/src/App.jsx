@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Controller from './pages/Controller'
 import GlobalState from './context/GlobalState'
 import LastIPage from './pages/LastIPage'
+import {motion} from 'framer-motion'
 
 function App() {
 
