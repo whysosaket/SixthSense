@@ -12,7 +12,7 @@ const Navbar = () => {
   const { data } = context;
   return (
     <>
-      <header className="header sticky top-0 bg-white shadow-md flex items-center justify-between px-8 py-02">
+      <header className="header sticky top-0 dark:shadow-dark1 bg-white dark:bg-dark1 text-white shadow-md flex items-center justify-between px-8 py-02">
   {/* logo */}
   <h1 className="w-3/12 flex justify-start">
       <svg

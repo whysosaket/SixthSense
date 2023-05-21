@@ -14,7 +14,7 @@ const ProfileCard = () => {
   return (
     <>
         <>
-        <div className="bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 rounded-3xl p-4 shadow-2xl text-white m-3">
+        <div className="dark:bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] dark:from-amber-200 dark:via-violet-600 dark:to-sky-900 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 rounded-3xl p-4 shadow-2xl dark:shadow-dark1 text-white m-3">
             <div className='flex justify-between my-1'>
                 <p className="text-md font-semibold text-gray-200">Current Balance</p>
                 <p className="text-md font-semibold">{data.date}</p>

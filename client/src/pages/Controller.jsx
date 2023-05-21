@@ -58,9 +58,9 @@ const Controller = () => {
     <>
       <ToastContainer autoClose={1000} />
       <div className="mx-auto">
-        <h1 className="text-3xl font-semibold text-center my-2">CONTROLLER</h1>
+        <h1 className="text-3xl font-semibold text-center my-2 dark:text-white">CONTROLLER</h1>
         <div className="flex justify-center flex-col">
-          <h3 className="mx-auto my-4 text-2xl font-semibold">{data.date}</h3>
+          <h3 className="mx-auto my-4 text-2xl font-semibold dark:text-white">{data.date}</h3>
           <button
             onClick={handleReset}
             className="bg-red-500 my-2 hover:bg-red-700 text-white mx-auto font-bold py-2 px-4 rounded-lg md:w-1/12 w-2/6"

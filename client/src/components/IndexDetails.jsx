@@ -14,7 +14,7 @@ const IndexDetails= () => {
   return (
     <>
     <div className="mx-3 my-6">
-        <div className="bg-white rounded-3xl p-4 text-gray-700 shadow-lg">
+        <div className="bg-white dark:bg-dark3 dark:text-white dark:shadow-dark1 rounded-3xl p-4 text-gray-700 shadow-lg">
             <div className='flex justify-between mb-2'>
                 <p className='font-bold'>Index Details</p>
                 <p className='text-lg text-gray-200 my-auto hover:animate-pulse'><GrFormNext /></p>
@@ -22,7 +22,7 @@ const IndexDetails= () => {
 
             <div className=''>
             <div className='flex justify-start my-1'>
-                <p className='text-gray-400'><span className='text-red-400 font-semibold text-sm'> Total Shares<sup>1</sup></span>: 
+                <p className='text-gray-400 dark:text-white'><span className='text-red-400 font-semibold text-sm'> Total Shares<sup>1</sup></span>: 
                 &nbsp; <AnimatedNumber
             value={data.totalShares}
             duration={duration}
@@ -30,7 +30,7 @@ const IndexDetails= () => {
                 </p>
             </div>
             <div className='flex justify-start my-1'>
-                <p className='text-gray-400'><span className='text-red-400 font-semibold text-sm'> Price Per Share<sup>2</sup></span>: 
+                <p className='text-gray-400 dark:text-white'><span className='text-red-400 font-semibold text-sm'> Price Per Share<sup>2</sup></span>: 
                 <AnimatedNumber
             value={data.pricePerShare.toFixed(2)}
             formatValue={formatValue}
@@ -39,7 +39,7 @@ const IndexDetails= () => {
             </p>
             </div>
             <div className='flex justify-start my-1'>
-                <p className='text-gray-400'><span className='text-red-400 font-semibold text-sm'> Invested<sup>3</sup></span>: 
+                <p className='text-gray-400 dark:text-white'><span className='text-red-400 font-semibold text-sm'> Invested<sup>3</sup></span>: 
                 <AnimatedNumber
             value={data.principle.toFixed(2)}
             formatValue={formatValue}

@@ -62,7 +62,8 @@ const buyShare = async (userId, amount) => {
     let graph = new Graph({
       date: data[user.dayCount].Date,
       price: data[user.dayCount].Price,
-      type: "buy"
+      type: "buy",
+      quantity: amount,
   });
   await graph.save();
     return true;
@@ -86,7 +87,8 @@ const sellShare = async (userId, amount) => {
     let graph = new Graph({
       date: data[user.dayCount].Date,
       price: data[user.dayCount].Price,
-      type: "sell"
+      type: "sell",
+      quantity: amount
   });
   await graph.save();
     return true;

@@ -12,7 +12,7 @@ const makeTrade = async () => {
     await addMoney(userID);
     
     let dayCount = await getDayCount(userID);
-    if(dayCount > data.length - 1){
+    if(dayCount >= data.length - 1){
         console.log("All Days are over!");
         return;
     }

@@ -16,17 +16,20 @@ const LastInvestments = () => {
   return (
     <>
     <div className="mx-3 my-6">
-        <div className="bg-white rounded-3xl p-4 text-gray-700 shadow-lg">
+        <div className="bg-white dark:bg-dark3 dark:text-white dark:shadow-dark1 rounded-3xl p-4 text-gray-700 shadow-lg">
             <Link to="/lastinvestments"  className='flex justify-between mb-2'>
                 <p className='font-bold'>Last investments</p>
-                <p className='text-lg text-gray-200 my-auto hover:animate-pulse'><GrFormNext /></p>
+                <p className='text-lg text-gray-200 my-auto hover:animate-pulse'>
+                    <GrFormNext className='dark:hidden' />
+                    <GrFormNext color='#84cc16' />
+                </p>
             </Link>
 
             <div className=''>
                 {transactions.slice(-3).map((transaction, index) => {
                     return (
                         <div key={index} className='flex justify-between my-1'>
-                            <p className='text-gray-400 font-semibold text-sm my-auto'>{transaction.transactionOn}</p>
+                            <p className='text-gray-400 dark:text-white font-semibold text-sm my-auto'>{transaction.transactionOn}</p>
                             <p className={`text-green-400 ${transaction.type=="sell"&&'text-red-400'}`}>{transaction.amount}</p>
                             <p className={`text-green-400 ${transaction.type=="sell"&&'text-red-400'}`}>₹ {transaction.price.toFixed(2)}</p>
                         </div>
