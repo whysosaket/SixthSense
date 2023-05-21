@@ -44,7 +44,7 @@ const Home = () => {
             <motion.div animate={{ y: [150,0] }} transition={{ duration: 0.8 }}>
             <IndexDetails />
             </motion.div>
-            <Toggle />
+            {/* <Toggle /> */}
             </div>
             <div className="w-full md:w-3/4 mb-4">
                 <Charts />

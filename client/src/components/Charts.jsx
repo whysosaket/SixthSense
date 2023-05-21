@@ -65,7 +65,7 @@ const Charts = () => {
           }),
           borderColor: 'white',
           borderWidth: 3,
-          backgroundColor: '#f26c6d',
+          backgroundColor: 'green',
           pointBorderColor: 'green',
           pointRadius: 5,
           pointBackgroundColor: 'white',

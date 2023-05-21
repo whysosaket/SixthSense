@@ -5,7 +5,7 @@ let url = "http://192.168.29.74:9000";
 
 const GlobalState = (props) => {
 
-    const [data, setData] = useState({walletBalance: 0, date: "09/01/2021", totalAssets: 0, totalShares: 0, pricePerShare: 0, principle: 0});
+    const [data, setData] = useState({walletBalance: 0, date: "09/01/2021", totalAssets: 0, totalShares: 0, pricePerShare: 0, principle: 0, profit: 0, profitSIP: 0,SIP:0, profitPercent: 0});
     const [transactions, setTransactions] = useState([{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"}, {transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"},{transactionOn: "09/01/2021", amount: 0, price: 0, type: "buy"} ]);
     const [graph, setGraph] = useState([]);
 

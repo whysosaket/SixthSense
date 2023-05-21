@@ -31,8 +31,13 @@ router.route("/getdata").get(async (req, res) => {
     let totalAssets = user.totalAssets
     let totalShares = user.totalShares;
     let principle = user.principle;
+    let profit = walletBalance + (pricePerShare * totalShares) - principle;
+    let SIP =  dayCount==0?0:(data[dayCount].SIP*pricePerShare);
+    let profitPercent = (profit / user.principle) * 100;
+    let profitSIP =  dayCount==0?0:(profit +principle - (pricePerShare * data[dayCount].SIP));
+    
 
-    let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle };
+    let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle, profit,SIP, profitPercent, profitSIP };
     return res.json({data: sendData});
 });
 

@@ -15,7 +15,7 @@ const LastInvestments = () => {
 
   return (
     <>
-    <div className="mx-3 my-6">
+    <div className="mx-3 my-2">
         <div className="bg-white dark:bg-dark3 dark:text-white dark:shadow-dark1 rounded-3xl p-4 text-gray-700 shadow-lg">
             <Link to="/lastinvestments"  className='flex justify-between mb-2'>
                 <p className='font-bold'>Last investments</p>
