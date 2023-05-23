@@ -1,36 +1,13 @@
-import React, { useEffect } from "react";
-import Navbar from "../components/Navbar";
+import React from "react";
 import ProfileCard from "../components/ProfileCard";
 import LastInvestments from "../components/LastInvestments";
 import Charts from "../components/Charts";
-import Toggle from "../components/Toggle";
 import IndexDetails from "../components/IndexDetails";
-import { useContext } from "react";
-import GlobalContext from "../context/globalContext";
 import { motion } from "framer-motion";
 
 const Home = () => {
 
-  const context = useContext(GlobalContext);
-  const {getData, getTransactions, trade} = context;
 
-  const per = async () => {
-    await getData();
-    await getTransactions();
-    await trade();
-  }
-
-  useEffect(() => { 
-    setInterval(() => {
-      getData();
-      getTransactions();
-    }, 2000);
-
-    return () => {
-      clearInterval();
-    }
-  }, []);
-  
   return (
     <>
         <div className="flex justify-between flex-col md:flex-row">
