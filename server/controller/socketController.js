@@ -1,14 +1,8 @@
 
 const data = require("../data.js");
 const User = require("../models/User");
-const Transaction = require("../models/Transaction");
 const Graph = require("../models/GraphModel");
-
-const { getLevel, getWalletBalance, updateWalletBalance, updateTotalAssets, getBalanceInShares } = require("../controller/dataController");
-const { getDayCount, updateDayCount, getDate } = require("../controller/timeController");
-const { getTransactions, getTransaction, setTransaction, buyShare, sellShare, setModel } = require("../controller/tradeController");
-const {makeTrade} = require("../controller/mainController");
-const {resetUser} = require("../controller/adminController");
+const { getTransactions} = require("../controller/tradeController");
 const {io} = require("socket.io-client");
 
 

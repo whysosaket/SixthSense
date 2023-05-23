@@ -27,9 +27,10 @@ const GlobalState = (props) => {
   const [graph, setGraph] = useState([]);
 
   useEffect(() => {
-    console.log(socket);
+    getData();
+    getTransactions();
+    getGraph();
     socket.on("profileData", (data) => {
-        // console.log("ss");
         setData(data);
         }
     );

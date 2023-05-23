@@ -1,6 +1,6 @@
-const { getLevel, getWalletBalance, updateWalletBalance, updateTotalAssets, getBalanceInShares } = require("./dataController");
+const { getLevel } = require("./dataController");
 const { getDayCount, updateDayCount, getDate } = require("./timeController");
-const { getTransactions, getTransaction, setTransaction, buyShare, sellShare, getBuyQuantity, getSellQuantity, setModel, addMoney } = require("./tradeController");
+const { buyShare, sellShare, getBuyQuantity, getSellQuantity, addMoney } = require("./tradeController");
 const data = require("../data.js");
 const Graph = require("../models/GraphModel")
 
