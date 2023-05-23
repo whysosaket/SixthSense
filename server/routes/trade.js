@@ -66,11 +66,13 @@ router.route("/transactions/:id").get(async (req, res) => {
 
 router.route("/updateday").get(async (req, res) => {
     updateDayCount(userID);
+    sendAllData();
     res.send("updated");
 });
 
 router.route("/reset").get(async (req, res) => {
     await resetUser(userID);
+    sendAllData();
     res.send("All Data has been reset!");
 });
 
