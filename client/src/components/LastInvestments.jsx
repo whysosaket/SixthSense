@@ -10,7 +10,7 @@ const LastInvestments = () => {
     const {transactions, getTransactions} = context;
 
     useEffect(() => {
-        getTransactions();
+        // getTransactions();
     }, []);
 
   return (

@@ -8,7 +8,7 @@ const LastIPage = () => {
     const {transactions, getTransactions} = context;
 
     useEffect(() => {
-        getTransactions();
+        // getTransactions();
     }, []);
 
   return (

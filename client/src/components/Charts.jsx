@@ -52,7 +52,7 @@ const Charts = () => {
 
 
     // console.log("data changing")
-    getGraph();
+    // getGraph();
     // Update userData whenever data changes
     setUserData({
       labels: graph.map((data) => data.date.split('-')[1] + '-' + data.date.split('-')[2]),

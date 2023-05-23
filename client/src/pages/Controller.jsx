@@ -33,7 +33,7 @@ const Controller = () => {
 
       intervalId = setInterval(() => {
         trade();
-        getGraph();
+        // getGraph();
       }, speed);
 
 
@@ -48,7 +48,7 @@ const Controller = () => {
   };
 
   useEffect(() => {
-    getData();
+    // getData();
     // return () => {
     //   clearInterval(intervalId);
     // };

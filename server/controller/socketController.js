@@ -1,5 +1,3 @@
-const expess = require("express");
-const router = expess.Router();
 
 const data = require("../data.js");
 const User = require("../models/User");
@@ -11,22 +9,21 @@ const { getDayCount, updateDayCount, getDate } = require("../controller/timeCont
 const { getTransactions, getTransaction, setTransaction, buyShare, sellShare, setModel } = require("../controller/tradeController");
 const {makeTrade} = require("../controller/mainController");
 const {resetUser} = require("../controller/adminController");
-const {sendAllData} = require("../controller/socketController");
+const {io} = require("socket.io-client");
+
 
 
 const userID = "64675dd96bb5b00a806f75d5";
 
+const socket = io.connect("http://localhost:9001");
 
-router.route("/").get( async (req, res) => {
-  makeTrade();
-  sendAllData();
-  res.send("trade");
-})
-.post((req, res) => {
+const sendAllData = async ()=>{
+    socket.emit("getProfileData");
+    socket.emit("getTransactions");
+    socket.emit("getGraph");
+}
 
-});
-
-router.route("/getdata").get(async (req, res) => {
+const sgetProfileData = async ()=>{
     let user = await User.findById(userID);
     let dayCount = user.dayCount;
     let date = data[dayCount].Date;
@@ -42,39 +39,19 @@ router.route("/getdata").get(async (req, res) => {
     
 
     let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle, profit,SIP, profitPercent, profitSIP };
-    return res.json({data: sendData});
-});
+    return sendData;
+}
 
-router.route("/getgraph").get(async (req, res) => {
+const sgetGraph = async ()=>{
     let graph = await Graph.find({});
-    res.json({graph});
-});
+    return graph;
+}
 
-router.route("/changeModel").post(async (req, res) => {
-    let model = req.body.model;
-    setModel(model);
-    res.send("Model Changed!");
-});
-
-router.route("/transactions").get(async (req, res) => {
+const sgetTransactions = async ()=>{
     let transactions = await getTransactions(userID);
-    res.json({transactions});
-});
-
-router.route("/transactions/:id").get(async (req, res) => {
-    let transaction = await getTransaction(userID, req.params.id);
-    res.send(transaction);
-});
-
-router.route("/updateday").get(async (req, res) => {
-    updateDayCount(userID);
-    res.send("updated");
-});
-
-router.route("/reset").get(async (req, res) => {
-    await resetUser(userID);
-    res.send("All Data has been reset!");
-});
+    return transactions;
+}
 
 
-module.exports = router;
+
+module.exports = { sgetProfileData, sgetGraph, sgetTransactions, sendAllData };
