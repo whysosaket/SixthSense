@@ -27,9 +27,12 @@ const GlobalState = (props) => {
   const [graph, setGraph] = useState([]);
 
   useEffect(() => {
-    getData();
-    getTransactions();
-    getGraph();
+    setTimeout(()=>{
+      getData();
+      getTransactions();
+      getGraph();
+    },1300)
+   
     socket.on("profileData", (data) => {
         setData(data);
         }
