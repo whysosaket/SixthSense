@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import { useContext } from "react";
 import GlobalContext from "../context/globalContext";
 import AnimatedNumber from "animated-number-react";
+import {motion } from "framer-motion"
 
 let duration = 300;
 let formatValue = value => `₹ ${Number(value).toFixed(2)}`;
@@ -15,7 +16,7 @@ const Navbar = () => {
       <header className="header sticky top-0 dark:shadow-dark1 bg-white dark:bg-dark1 text-white shadow-md flex items-center justify-between px-8 py-02">
   {/* logo */}
   <h1 className="w-3/12 flex justify-start">
-      <svg
+      {/* <svg
         viewBox="0 0 48 31"
         className="h-6 w-auto hover:text-green-500 duration-200 my-auto mx-2"
       >
@@ -23,8 +24,25 @@ const Navbar = () => {
           d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
           fill="#22C55E"
         />
-      </svg>
-      <Link to="/" className="inline-block text-2xl font-bold text-green-500 my-3 md:my-0">stalkstocks</Link>
+      </svg> */}
+      <Link to="/" className="text-3xl font-bold text-green-500 my-3 md:my-0 font-logo flex">
+        <motion.div initial={{x: 25,y: 400}} animate={{ x: 0, y: 0 }}  className='font-logo2'>
+        <motion.div transition={{ delay: 1 }}  initial={{x: 25}} animate={{ x: 0 }} className='font-logo2'>
+          S
+          </motion.div>
+          </motion.div>
+        <motion.div transition={{ delay: 1 }} initial={{x: 400}} animate={{ x: 0 }} >
+        ixth
+        </motion.div>
+        <motion.div initial={{x: -25,y: 400}} animate={{ x: 0, y: 0 }}  className='font-logo2'>
+        <motion.div transition={{ delay: 1 }}  initial={{x: -25}} animate={{ x: 0 }} className='font-logo2'>
+          S
+          </motion.div>
+          </motion.div>
+        <motion.div transition={{ delay: 1 }} initial={{x: -400}} animate={{ x: 0 }} >
+        ense
+        </motion.div>
+        </Link>
   </h1>
   {/* navigation */}
   <nav className="nav font-semibold text-lg hidden md:block">

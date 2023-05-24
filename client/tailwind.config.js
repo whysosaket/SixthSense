@@ -18,6 +18,10 @@ export default {
         dark4: '#203354',
         dark5: '#23395d',
       },
+      fontFamily: {
+        logo: 'Courgette',
+        logo2: 'Rock Salt'
+      }
     },
   },
   plugins: [],

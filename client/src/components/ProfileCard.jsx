@@ -3,7 +3,7 @@ import GlobalContext from '../context/globalContext';
 import { motion } from "framer-motion"
 import AnimatedNumber from "animated-number-react";
 
-let duration = 700;
+let duration = 900;
 let formatValue = value => `₹ ${Number(value).toFixed(2)}`;
 
 const ProfileCard = () => {
