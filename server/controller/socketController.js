@@ -4,10 +4,9 @@ const User = require("../models/User");
 const Graph = require("../models/GraphModel");
 const { getTransactions} = require("../controller/tradeController");
 const {io} = require("socket.io-client");
+const userid = require("../user.js");
 
-
-
-const userID = "64675dd96bb5b00a806f75d5";
+const userID = userid.userid;
 
 const socket = io.connect("http://localhost:9001");
 
@@ -30,14 +29,13 @@ const sgetProfileData = async ()=>{
     let SIP =  dayCount==0?0:(data[dayCount].SIP*pricePerShare);
     let profitPercent = (profit / user.principle) * 100;
     let profitSIP =  dayCount==0?0:(profit +principle - (pricePerShare * data[dayCount].SIP));
-    
 
     let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle, profit,SIP, profitPercent, profitSIP };
     return sendData;
 }
 
 const sgetGraph = async ()=>{
-    let graph = await Graph.find({});
+    let graph = await Graph.find({user: userID});
     return graph;
 }
 

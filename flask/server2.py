@@ -10,6 +10,7 @@ model2 = pickle.load(open('rf_model.sav','rb'))
 model3 = pickle.load(open('knn_model.sav','rb'))
 model4 = pickle.load(open('svc_model.sav','rb'))
 model5 = pickle.load(open('adb_svc_model.sav','rb'))
+model6 = pickle.load(open('lda_model.sav','rb'))
 
 
 @app.route('/predict', methods=['POST'])
@@ -26,6 +27,7 @@ def predict():
     predList.append(model3.predict(arr))
     predList.append(model4.predict(arr))
     predList.append(model5.predict(arr))
+    predList.append(model6.predict(arr))
     mean = np.mean(predList)
     prediction = 0
     if(mean >= 0.6):

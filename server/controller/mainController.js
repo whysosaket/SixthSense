@@ -3,8 +3,9 @@ const { getDayCount, updateDayCount, getDate } = require("./timeController");
 const { buyShare, sellShare, getBuyQuantity, getSellQuantity, addMoney } = require("./tradeController");
 const data = require("../data.js");
 const Graph = require("../models/GraphModel")
+const userid = require("../user.js");
 
-const userID = "64675dd96bb5b00a806f75d5";
+const userID = userid.userid;
 
 const makeTrade = async () => {
     try{

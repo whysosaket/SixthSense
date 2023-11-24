@@ -10,9 +10,9 @@ const { getTransactions, getTransaction, setModel } = require("../controller/tra
 const {makeTrade} = require("../controller/mainController");
 const {resetUser} = require("../controller/adminController");
 const {sendAllData} = require("../controller/socketController");
+const userid = require("../user.js");
 
-
-const userID = "64675dd96bb5b00a806f75d5";
+const userID = userid.userid;
 
 
 router.route("/").get( async (req, res) => {
@@ -38,13 +38,12 @@ router.route("/getdata").get(async (req, res) => {
     let profitPercent = (profit / user.principle) * 100;
     let profitSIP =  dayCount==0?0:(profit +principle - (pricePerShare * data[dayCount].SIP));
     
-
     let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle, profit,SIP, profitPercent, profitSIP };
     return res.json({data: sendData});
 });
 
 router.route("/getgraph").get(async (req, res) => {
-    let graph = await Graph.find({});
+    let graph = await Graph.find({user: userID});
     res.json({graph});
 });
 
