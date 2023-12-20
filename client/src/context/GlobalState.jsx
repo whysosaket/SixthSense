@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import GlobalContext from "./globalContext";
 import io from "socket.io-client";
 
-let url = "http://192.168.29.73:9000";
-const socket = io.connect("http://192.168.29.73:9001");
+let url = import.meta.env.VITE_WEB_URL;
+const socket = io.connect(import.meta.env.VITE_SOCKET_URL);
 
 const GlobalState = (props) => {
   const [data, setData] = useState({
