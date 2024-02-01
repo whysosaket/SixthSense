@@ -62,7 +62,7 @@ const GlobalState = (props) => {
     const interval = setInterval(()=>{
       getAllData();
       console.log("getting data");
-    }, 500);
+    }, 1000);
 
     return () => clearInterval(interval);
     

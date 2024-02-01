@@ -16,12 +16,18 @@ const userID = userid.userid;
 
 
 router.route("/").get( async (req, res) => {
+    try{
   makeTrade();
 //   sendAllData();
-  res.send("trade");
+  return res.send("trade");
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/getdata").get(async (req, res) => {
+
+    try{
     let user = await User.findById(userID);
     let dayCount = user.dayCount;
     let date = data[dayCount].Date;
@@ -37,39 +43,66 @@ router.route("/getdata").get(async (req, res) => {
     
     let sendData = { date, walletBalance, totalAssets, totalShares, pricePerShare, principle, profit,SIP, profitPercent, profitSIP };
     return res.json({data: sendData});
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/getgraph").get(async (req, res) => {
+    try{
     let graph = await Graph.find({user: userID});
     return res.json({graph});
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/changeModel").post(async (req, res) => {
+    try{
     let model = req.body.model;
     setModel(model);
     return res.send("Model Changed!");
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/transactions").get(async (req, res) => {
+    try{
     let transactions = await getTransactions(userID);
     return res.json({transactions});
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/transactions/:id").get(async (req, res) => {
+    try{
     let transaction = await getTransaction(userID, req.params.id);
     return res.send(transaction);
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/updateday").get(async (req, res) => {
+    try{
     updateDayCount(userID);
     sendAllData();
     return res.send("updated");
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 router.route("/reset").get(async (req, res) => {
+    try{
     await resetUser(userID);
     sendAllData();
     return res.send("All Data has been reset!");
+    }catch(err){
+        return res.json({err});
+    }
 });
 
 
