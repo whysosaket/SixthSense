@@ -4,6 +4,7 @@ const { buyShare, sellShare, getBuyQuantity, getSellQuantity, addMoney } = requi
 const data = require("../data.js");
 const Graph = require("../models/GraphModel")
 const userid = require("../user.js");
+const {predict} = require("./socketSimulator");
 
 const userID = userid.userid;
 
@@ -22,7 +23,8 @@ const makeTrade = async () => {
     const {b,c,i,j,l,n,s,t,u} = sendingData;
     let senddata = [b,c,i,j,l,n,s,t,u];
 
-    let level = await getLevel(senddata);
+    // let level = await getLevel(senddata);
+    let level = predict();
     console.log(level, dayCount, sendingData.Price);
 
 

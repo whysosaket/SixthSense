@@ -4,6 +4,7 @@ import LastInvestments from "../components/LastInvestments";
 import Charts from "../components/Charts";
 import IndexDetails from "../components/IndexDetails";
 import { motion } from "framer-motion";
+import SimulateButtons from "../components/SimulateButtons";
 
 const Home = () => {
 
@@ -25,6 +26,9 @@ const Home = () => {
             </div>
             <div className="w-full md:w-3/4 mb-4">
                 <Charts />
+                <div className="flex justify-start my-8">
+                    <SimulateButtons />
+                </div>
             </div>
         </div>
     

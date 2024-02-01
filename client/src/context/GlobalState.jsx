@@ -3,7 +3,7 @@ import GlobalContext from "./globalContext";
 import io from "socket.io-client";
 
 let url = import.meta.env.VITE_WEB_URL;
-const socket = io.connect(import.meta.env.VITE_SOCKET_URL);
+// const socket = io.connect(import.meta.env.VITE_SOCKET_URL);
 
 const GlobalState = (props) => {
   const [data, setData] = useState({
@@ -26,6 +26,8 @@ const GlobalState = (props) => {
   ]);
   const [graph, setGraph] = useState([]);
 
+  // Below Code USES SOCKET.IO
+/*
   useEffect(() => {
     setTimeout(()=>{
       getData();
@@ -53,6 +55,24 @@ const GlobalState = (props) => {
     socket.emit("getTransactions", "send me data");
     socket.emit("getGraph", "send me data");
     };
+*/
+
+  // GETTING THE SAME EFFECT USING API CALLS
+  useEffect(() => {
+    const interval = setInterval(()=>{
+      getAllData();
+      console.log("getting data");
+    }, 100);
+
+    return () => clearInterval(interval);
+    
+  }, []);
+
+  const getAllData = () => {
+    getData();
+    getTransactions();
+    getGraph();
+  };
 
   const getData = async () => {
     try {

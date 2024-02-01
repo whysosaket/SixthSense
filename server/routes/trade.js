@@ -17,11 +17,8 @@ const userID = userid.userid;
 
 router.route("/").get( async (req, res) => {
   makeTrade();
-  sendAllData();
+//   sendAllData();
   res.send("trade");
-})
-.post((req, res) => {
-
 });
 
 router.route("/getdata").get(async (req, res) => {
