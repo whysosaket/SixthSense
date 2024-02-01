@@ -11,7 +11,7 @@ const userID = userid.userid;
 // Predictions
 const predict = () => {
     let random = Math.random();
-    if(random > 0.25) return 1;
+    if(random > 0.2) return 1;
     else return 0;
 }
 

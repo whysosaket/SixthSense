@@ -41,35 +41,35 @@ router.route("/getdata").get(async (req, res) => {
 
 router.route("/getgraph").get(async (req, res) => {
     let graph = await Graph.find({user: userID});
-    res.json({graph});
+    return res.json({graph});
 });
 
 router.route("/changeModel").post(async (req, res) => {
     let model = req.body.model;
     setModel(model);
-    res.send("Model Changed!");
+    return res.send("Model Changed!");
 });
 
 router.route("/transactions").get(async (req, res) => {
     let transactions = await getTransactions(userID);
-    res.json({transactions});
+    return res.json({transactions});
 });
 
 router.route("/transactions/:id").get(async (req, res) => {
     let transaction = await getTransaction(userID, req.params.id);
-    res.send(transaction);
+    return res.send(transaction);
 });
 
 router.route("/updateday").get(async (req, res) => {
     updateDayCount(userID);
     sendAllData();
-    res.send("updated");
+    return res.send("updated");
 });
 
 router.route("/reset").get(async (req, res) => {
     await resetUser(userID);
     sendAllData();
-    res.send("All Data has been reset!");
+    return res.send("All Data has been reset!");
 });
 
 
