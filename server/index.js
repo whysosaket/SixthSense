@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // create server
-// const server = http.createServer(app);
+const server = http.createServer(app);
 // const io = new Server(server, {
 //   cors: {
 //     origin: "*",
